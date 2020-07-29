@@ -10,14 +10,7 @@ import rest.assured.dominio.Usuario;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.is;
 
-public class RegistroTeste {
-    @BeforeClass
-    public static void setup(){
-
-        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
-        baseURI = "https://reqres.in";
-        basePath = "/api";
-    }
+public class RegistroTeste extends BaseTeste {
 
     @Test
     public void testNaoEfetuaRegistroQuandoSenhaEstaFaltando(){
