@@ -29,7 +29,7 @@ public class TesteUsuario extends TesteBase {
     }
 
     @Test public void testeCriaUsuarioComSucesso(){
-        Usuario usuario = new Usuario("rafael", "eng test", "email@gmail.com");
+        Usuario usuario = new Usuario("rafael", "eng test", "email@gmail.com", "lima");
         given().
                 body(usuario).
         when().

@@ -2,11 +2,15 @@ package rest.assured.dominio;
 
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Usuario {
 
     @JsonAlias("first_name")
@@ -16,27 +20,4 @@ public class Usuario {
     @JsonAlias("last_name")
     private String lastname;
 
-    public Usuario() {}
-
-    public Usuario(String name, String job, String email) {
-        this.name = name;
-        this.job = job;
-        this.email = email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getJob() {
-        return job;
-    }
-
-    public String getEmail() { return email; }
-
-    public void setEmail(String email) { this.email = email; }
-
-    public String getLastname() { return lastname; }
-
-    public void setLastname(String lastname) { this.lastname = lastname; }
 }
