@@ -8,6 +8,7 @@ import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import rest.assured.dominio.Usuario;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.is;
@@ -34,9 +35,10 @@ public class UsuarioTeste {
     }
 
     @Test public void testSucessfullyCreateaUser(){
+        Usuario usuario = new Usuario("rafael", "eng test");
         given().
                 contentType(ContentType.JSON).
-                body("{\"name\": \"rafael\", \"job\": \"eng test\"}").
+                body(usuario).
         when().
                 post("/users").
         then().
