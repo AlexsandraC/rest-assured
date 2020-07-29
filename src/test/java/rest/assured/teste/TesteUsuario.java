@@ -19,7 +19,7 @@ public class TesteUsuario extends TesteBase {
 
     @Test public void testeMostraPaginaEspecifica() {
         given().
-                param("page", "2").
+                params("page", "2").
         when().
                 get(LISTA_USUARIOS_ENDPOINT).
         then().
