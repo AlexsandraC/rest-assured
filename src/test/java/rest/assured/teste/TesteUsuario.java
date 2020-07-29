@@ -13,14 +13,14 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class TesteUsuario extends TesteBase {
 
-    private static final String LISTA_USUARIO_ENDPOINT = "/users";
+    private static final String LISTA_USUARIOS_ENDPOINT = "/users";
     private static final String CRIAR_USUARIO_ENDPOINT = "/user";
 
     @Test public void testeMostraPaginaEspecifica() {
         given().
                 param("page", "2").
         when().
-                get(LISTA_USUARIO_ENDPOINT).
+                get(LISTA_USUARIOS_ENDPOINT).
         then().
                 statusCode(HttpStatus.SC_OK).
                 body("page", is(2)).
@@ -39,17 +39,31 @@ public class TesteUsuario extends TesteBase {
     }
 
     @Test public void testeTamanhoDosItensMostradosIgualAoPerPage() {
+        int paginaEsperada = 2;
+        int perPageEsperado = retornaPerPageEsperado(paginaEsperada);
+
         given().
-                param("page", "2").
+                param("page", paginaEsperada).
                 when().
-                get(LISTA_USUARIO_ENDPOINT).
+                get(LISTA_USUARIOS_ENDPOINT).
                 then().
                 statusCode(HttpStatus.SC_OK).
                 body(
-                        "page", is(2),
-                        "data.size()", is(6),
-                        "data.findAll { it.avatar.startsWith('https://s3.amazonaws.com') }.size()", is(6)
+                        "page", is(paginaEsperada),
+                        "data.size()", is(perPageEsperado),
+                        "data.findAll { it.avatar.startsWith('https://s3.amazonaws.com') }.size()", is(perPageEsperado)
                 );
 
+    }
+
+    private int retornaPerPageEsperado(int page) {
+        return given().
+                    param("page", page).
+                when().
+                    get(LISTA_USUARIOS_ENDPOINT).
+                then().
+                    statusCode(HttpStatus.SC_OK).
+                extract().
+                    path("per_page");
     }
 }
