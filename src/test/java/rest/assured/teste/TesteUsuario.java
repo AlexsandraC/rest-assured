@@ -3,7 +3,6 @@
  */
 package rest.assured.teste;
 
-import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.junit.Test;
 import rest.assured.dominio.Usuario;
@@ -12,12 +11,12 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
-public class UsuarioTeste extends BaseTeste {
+public class TesteUsuario extends TesteBase {
 
     private static final String LISTA_USUARIO_ENDPOINT = "/users";
     private static final String CRIAR_USUARIO_ENDPOINT = "/user";
 
-    @Test public void testListUserMetadata() {
+    @Test public void testeMostraPaginaEspecifica() {
         given().
                 param("page", "2").
         when().
@@ -28,7 +27,7 @@ public class UsuarioTeste extends BaseTeste {
                 body("data", is(notNullValue()));
     }
 
-    @Test public void testSucessfullyCreateaUser(){
+    @Test public void testeCriaUsuarioComSucesso(){
         Usuario usuario = new Usuario("rafael", "eng test", "email@gmail.com");
         given().
                 body(usuario).
