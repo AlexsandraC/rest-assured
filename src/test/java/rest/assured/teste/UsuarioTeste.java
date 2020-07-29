@@ -28,7 +28,6 @@ public class UsuarioTeste extends BaseTeste {
     @Test public void testSucessfullyCreateaUser(){
         Usuario usuario = new Usuario("rafael", "eng test", "email@gmail.com");
         given().
-                contentType(ContentType.JSON).
                 body(usuario).
         when().
                 post("/users").
