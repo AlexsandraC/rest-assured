@@ -24,6 +24,6 @@ public class RegistroTeste extends BaseTeste {
                 post(REGISTRA_USUARIO_ENDPOINT).
         then().
                 statusCode(HttpStatus.SC_BAD_REQUEST).
-                body("error", is("Missing password"));
+                body("error", is("Missing password")); 
     }
 }
